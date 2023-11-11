@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/circle.css" />
+    <link rel="stylesheet" href="/css//style.css" />
+    <link rel="stylesheet" href="/lib/css-doodle/css-doodle.min.js" />
+</head>
+<body>
+    <style>
+        css-doodle {
+            
+            --rule: (
+        @@grid: 2/ 50em;
+              --d: @@p(45deg, -45deg, 135deg, -135deg);
+              --mg: linear-gradient(@@var(--d), #fff 50%, #ff6a00 50%, #ee0979 100%);
+              background:
+        @@var(--mg) 0 0 / 100% 100%,
+        @@var(--mg) 0 0 / 50% 50%;
+            );
+        }
+    </style>
+    <div class="row gap-1" style="height:100vh;">
+        <div class="col-md-3 d-md-block d-sm-none" id="hide">
+            <header class="masthead text-center" style="height:100vh;">
+                <div class="masthead-content">
+                    <div class="container px-5">
+                        <h1 class="masthead-heading mb-0" id="clickMe">Chat App</h1>
+                        <h3 class="masthead-subheading mb-0">Connecting Conversations, Bridging Distances – Your Chat, Your World.</h3>
+                    </div>
+                </div>
+                <div class="bg-circle-1 bg-circle"></div>
+                <div class="bg-circle-2 bg-circle"></div>
+                <div class="bg-circle-3 bg-circle"></div>
+                <div class="bg-circle-4 bg-circle"></div>
+           </header>
+        </div>
+        <div class="col-md-8 d-flex align-items-center justify-content-center">
+            @RenderBody()
+        </div>
+    </div>
+   
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/lib/css-doodle/css-doodle.min.js"></script>
+    <script>
+        $("#clickMe").on("click", function () {
+           window.location.href = "/";
+        });
+    </script>
+    <css-doodle use="var(--rule)" style="width:100vw; height:100vh; position: absolute; top:0; z-index:-20;">
+
+    </css-doodle>
+</body>
+</html>
