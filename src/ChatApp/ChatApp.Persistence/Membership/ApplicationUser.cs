@@ -15,7 +15,7 @@ namespace ChatApp.Persistence.Membership
         public  string Bio { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public string? ImageUrl { get; set; }
-        
+        public DateTime RegistrationDate { get; set; }
         /// User is aggregate root so, DO NOT ADD ANY NAVIGATION PROPERTY
     }
 }

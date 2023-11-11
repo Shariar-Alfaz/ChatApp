@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
-namespace ResumeCraft.Persistence.Features.Account.Membership
+namespace ChatApp.Persistence.Membership
 {
     public class ApplicationRoleManager : RoleManager<ApplicationRole>
     {

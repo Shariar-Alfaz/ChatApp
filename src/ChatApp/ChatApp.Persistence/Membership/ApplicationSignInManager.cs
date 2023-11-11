@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace ResumeCraft.Persistence.Features.Account.Membership
+namespace ChatApp.Persistence.Membership
 {
     public class ApplicationSignInManager : SignInManager<ApplicationUser>
     {
