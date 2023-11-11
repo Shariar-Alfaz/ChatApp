@@ -1,4 +1,4 @@
-﻿
+﻿@model RegisterModel
 @{
     ViewData["Title"] = "Register";
     Layout = "~/Views/Shared/_Info.cshtml";
@@ -11,40 +11,55 @@
 <div class="p-5 rounded-4 bg-white shadow">
     <h1 class="headings">Register</h1>
 
-    <form>
+    <form asp-antiforgery="true" asp-action="register" asp-controller="auth" asp-area="" method="post">
         <div class="row">
             <div class="col-md-6">
                 <div class="mb-3">
                     <label class="form-label label-custom">First name</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" asp-for="FirstName">
+                    <div class="text-danger">
+                        <span asp-validation-for="FirstName"></span>
+                    </div>
                 </div>
             </div>
 
              <div class="col-md-6">
                 <div class="mb-3">
                     <label class="form-label label-custom">Last name</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" asp-for="LastName">
+                    <div class="text-danger">
+                        <span asp-validation-for="LastName"></span>
+                    </div>
                 </div>
              </div>
         </div>
 
         <div class="mb-3">
             <label class="form-label label-custom">Email</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" asp-for="Email">
+            <div class="text-danger">
+                <span asp-validation-for="Email"></span>
+            </div>
         </div>
 
         <div class="row">
             <div class="col-md-6">
                 <div class="mb-3">
                     <label class="form-label label-custom">Contact number</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" asp-for="ContactNumber">
+                    <div class="text-danger">
+                        <span asp-validation-for="ContactNumber"></span>
+                    </div>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="mb-3">
                     <label class="form-label label-custom">Street</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" asp-for="Street">
+                    <div class="text-danger">
+                        <span asp-validation-for="Street"></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -53,26 +68,38 @@
             <div class="col-md-6">
                 <div class="mb-3">
                     <label class="form-label label-custom">Provience</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" asp-for="Provience">
+                    <div class="text-danger">
+                        <span asp-validation-for="Provience"></span>
+                    </div>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="mb-3">
                     <label class="form-label label-custom">Country</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" asp-for="Country">
+                    <div class="text-danger">
+                        <span asp-validation-for="Country"></span>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="mb-3">
             <label class="form-label label-custom">Password</label>
-            <input type="password" class="form-control">
+            <input type="password" class="form-control" asp-for="Password">
+            <div class="text-danger">
+                <span asp-validation-for="Password"></span>
+            </div>
         </div>
 
         <div class="mb-3">
             <label class="form-label label-custom">Confirm password</label>
-            <input type="password" class="form-control">
+            <input type="password" class="form-control" asp-for="ConfirmPassword">
+            <div class="text-danger">
+                <span asp-validation-for="ConfirmPassword"></span>
+            </div>
         </div>
 
          <div class="text-center">
@@ -80,4 +107,7 @@
          </div>
     </form>
 </div>
-
+@section Scripts 
+{
+    <partial name="_ValidationScriptsPartial" />
+}
