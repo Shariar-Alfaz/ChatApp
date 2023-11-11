@@ -3,22 +3,6 @@
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_Info.cshtml";
 }
-<style>
-    .headings {
-        font-size: 4rem;
-        padding-bottom: 1rem;
-        font-weight: 700;
-        background: -webkit-linear-gradient(0deg, #ee0979 0%, #ff6a00 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    .label-custom {
-        font-size: 1.5rem;
-        background: -webkit-linear-gradient(0deg, #ee0979 0%, #ff6a00 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-</style>
 <div class="p-5 rounded-4 bg-white shadow">
     <h1 class="headings">Login</h1>
 
@@ -36,7 +20,9 @@
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div>
-        <button type="submit" class="btn custom-button-color text-center" style="width:150px;">Submit</button>
+        <div class="text-center">
+            <button type="submit" class="btn custom-button-color custom-button-font" style="width:150px;">Submit</button>
+        </div>
     </form>
 </div>
 

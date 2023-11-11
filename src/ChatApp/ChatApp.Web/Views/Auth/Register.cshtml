@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Info.cshtml";
+}
+<style>
+    label{
+        font-size: 18px !important;
+    }
+</style>
+<div class="p-5 rounded-4 bg-white shadow">
+    <h1 class="headings">Register</h1>
+
+    <form>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label label-custom">First name</label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+
+             <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label label-custom">Last name</label>
+                    <input type="text" class="form-control">
+                </div>
+             </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label label-custom">Email</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label label-custom">Contact number</label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label label-custom">Street</label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label label-custom">Provience</label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label label-custom">Country</label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label label-custom">Password</label>
+            <input type="password" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label label-custom">Confirm password</label>
+            <input type="password" class="form-control">
+        </div>
+
+         <div class="text-center">
+            <button type="submit" class="btn custom-button-color custom-button-font" style="width:150px;">Submit</button>
+         </div>
+    </form>
+</div>
+
