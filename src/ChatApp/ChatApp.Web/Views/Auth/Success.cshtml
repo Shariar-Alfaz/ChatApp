@@ -1,0 +1,12 @@
+﻿@model RegistrationMessageModel
+@{
+    ViewData["Title"] = "Success";
+    Layout = "~/Views/Shared/_Info.cshtml";
+}
+
+<div class="p-5 rounded-4 bg-white shadow" style="max-width:800px;">
+    <h1 class="headings">Congratulations</h1>
+    <h2>Dear @Model.Name,</h2>
+    <p>Your registration is confirmed. You need to <a asp-action="login" asp-controller="auth" asp-area="">login</a> now.</p>
+</div>
+

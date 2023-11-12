@@ -1,4 +1,4 @@
-﻿
+﻿@model LoginModel
 @{
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_Info.cshtml";
@@ -6,23 +6,35 @@
 <div class="p-5 rounded-4 bg-white shadow">
     <h1 class="headings">Login</h1>
 
-    <form>
+    <form asp-controller="auth" asp-action="login" asp-area="" method="post" asp-antiforgery="true">
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label label-custom">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label  class="form-label label-custom">Email address</label>
+            <input type="text" class="form-control" asp-for="Email" >
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <div class="text-danger">
+                <span asp-validation-for="Email"></span>
+            </div>
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label label-custom">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <label class="form-label label-custom">Password</label>
+            <input type="password" class="form-control" asp-for="Password">
+            <div class="text-danger">
+                <span asp-validation-for="Password"></span>
+            </div>
         </div>
         <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" asp-for="RememberMe">
+            <label class="form-check-label" for="exampleCheck1">Remember me</label>
+        </div>
+        <div class="mb-3">
+            <a asp-action="forgotpassword" asp-controller="auth" asp-area="">Forgot Password</a>
         </div>
         <div class="text-center">
             <button type="submit" class="btn custom-button-color custom-button-font" style="width:150px;">Submit</button>
         </div>
     </form>
 </div>
-
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -42,17 +42,18 @@
             @RenderBody()
         </div>
     </div>
-   
+    <css-doodle use="var(--rule)" style="width:100%; height:100%; position: absolute; top:0; z-index:-20;">
+
+    </css-doodle>
     <script src="/lib/jquery/dist/jquery.min.js"></script>
     <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/lib/css-doodle/css-doodle.min.js"></script>
+    @RenderSectionAsync("Scripts", required: false)
     <script>
         $("#clickMe").on("click", function () {
            window.location.href = "/";
         });
     </script>
-    <css-doodle use="var(--rule)" style="width:100%; height:100%; position: absolute; top:0; z-index:-20;">
-
-    </css-doodle>
+    
 </body>
 </html>

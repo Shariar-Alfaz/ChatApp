@@ -1,0 +1,13 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<html>
+	<body>
+		<h2>Chat App</h2>
+		<h4>Dear, <#=Name#></h4>
+		<p>Thank you for registering with us. Please click on the below link to activate your account.</p>
+		<a href="<#=Url#>">Confirm registration</a>
+	</body>
+</html>

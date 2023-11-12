@@ -1,0 +1,12 @@
+﻿@model RegistrationMessageModel
+@{
+    ViewData["Title"] = "ConfirmEmailMessage";
+    Layout = "~/Views/Shared/_Info.cshtml";
+}
+
+<div class="p-5 rounded-4 bg-white shadow" style="max-width:800px;">
+    <h1 class="headings">Confirm registration</h1>
+    <h2>Dear @Model.Name,</h2>
+    <p>Thank you for registering with us. A confirmation email has been sent to <strong>@Model.Email</strong> this account. Please verify this email for complete your registration.</p>
+</div>
+
