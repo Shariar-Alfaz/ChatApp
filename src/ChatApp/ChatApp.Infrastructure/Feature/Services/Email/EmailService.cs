@@ -17,9 +17,9 @@ namespace ChatApp.Infrastructure.Feature.Services.Email
         }
         public async Task SendRegistrationConfirmationEmailAsync(string receiverEmail, string reciverName, string url)
         {
-            string subject = "Registration Confirmation";
+            const string subject = "Registration Confirmation";
             var template = new RegistrationConfirmEmail(reciverName, url);
-            string message = template.TransformText();
+            var message = template.TransformText();
             await SendEmailAsync(receiverEmail, subject, message);
         }
 
@@ -29,14 +29,17 @@ namespace ChatApp.Infrastructure.Feature.Services.Email
             email.Sender = MailboxAddress.Parse(_emailSettings.SenderEmail);
             email.To.Add(MailboxAddress.Parse(receiverEmail));
             email.Subject = subject;
-            var builder = new BodyBuilder();
-            builder.HtmlBody = message;
+            var builder = new BodyBuilder
+            {
+                HtmlBody = message
+            };
             email.Body = builder.ToMessageBody();
             using var smtp = new SmtpClient();
-            smtp.Connect(_emailSettings.Host, _emailSettings.Port, SecureSocketOptions.StartTls);
-            smtp.Authenticate(_emailSettings.UserName, _emailSettings.Password);
+            
+            await smtp.ConnectAsync(_emailSettings.Host, _emailSettings.Port, SecureSocketOptions.StartTls);
+            await smtp.AuthenticateAsync(_emailSettings.SenderEmail, _emailSettings.Password);
             await smtp.SendAsync(email);
-            smtp.Disconnect(true);
+            await smtp.DisconnectAsync(true);
         }
     }
 }

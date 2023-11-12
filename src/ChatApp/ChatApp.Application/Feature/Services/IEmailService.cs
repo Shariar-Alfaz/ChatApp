@@ -2,6 +2,6 @@
 {
     public interface IEmailService
     {
-        Task SendRegistrationConfirmationEmailAsync(string receiverEmail, string reciverName, string url);
+        Task SendRegistrationConfirmationEmailAsync(string receiverEmail, string receiverName, string url);
     }
 }

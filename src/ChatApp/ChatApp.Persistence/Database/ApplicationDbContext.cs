@@ -41,6 +41,14 @@ namespace ChatApp.Persistence.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ApplicationUser>(entity => entity.ToTable("Users"));
+            modelBuilder.Entity<ApplicationUserClaim>(entity => entity.ToTable("UserClaims"));
+            modelBuilder.Entity<ApplicationUserLogin>(entity => entity.ToTable("UserLogins"));
+            modelBuilder.Entity<ApplicationUserToken>(entity => entity.ToTable("UserTokens"));
+
+            modelBuilder.Entity<ApplicationRole>(entity => entity.ToTable("Roles"));
+            modelBuilder.Entity<ApplicationRoleClaim>(entity => entity.ToTable("RoleClaims"));
+            modelBuilder.Entity<ApplicationUserRole>(entity => entity.ToTable("UserRoles"));
         }
     }
 }

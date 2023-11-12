@@ -8,5 +8,6 @@ public class WebModule : Module
         base.Load(builder);
 
         builder.RegisterType<RegisterModel>().AsSelf();
+        builder.RegisterType<RegistrationMessageModel>().AsSelf();
     }
 }

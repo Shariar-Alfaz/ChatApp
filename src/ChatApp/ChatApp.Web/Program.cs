@@ -9,6 +9,7 @@ using Autofac;
 using ChatApp.Persistence;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using ChatApp.Infrastructure.Feature.Services.Email.Settings;
+using ChatApp.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((ctx, lc) => lc
@@ -34,6 +35,7 @@ try
         containerBuilder.RegisterModule(new PersistenceModule(connectionString,
             migrationAssembly));
         containerBuilder.RegisterModule(new WebModule());
+        containerBuilder.RegisterModule(new InfrastructureModule());
     });
     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

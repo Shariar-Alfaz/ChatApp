@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ChatApp.Web.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class @int : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,7 +34,7 @@ namespace ChatApp.Web.Data.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: true),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Povience = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Provience = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Bio = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),

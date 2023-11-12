@@ -16,8 +16,6 @@ namespace ChatApp.Persistence
         }
         protected override void Load(ContainerBuilder builder)
         {
-            base.Load(builder);
-
             builder
                .RegisterType<ApplicationDbContext>()
                .AsSelf()
@@ -31,6 +29,8 @@ namespace ChatApp.Persistence
                 .WithParameter("connectionString", _connectionString)
                 .WithParameter("migrationAssembly", _migrationAssembly)
                 .InstancePerLifetimeScope();
+
+            base.Load(builder);
         }
     }
 }

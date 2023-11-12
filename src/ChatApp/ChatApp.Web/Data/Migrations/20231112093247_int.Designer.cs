@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChatApp.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231111191151_init")]
-    partial class init
+    [Migration("20231112093247_int")]
+    partial class @int
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,7 +50,7 @@ namespace ChatApp.Web.Data.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles", (string)null);
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("ChatApp.Persistence.Membership.ApplicationRoleClaim", b =>
@@ -74,7 +74,7 @@ namespace ChatApp.Web.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims", (string)null);
+                    b.ToTable("RoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("ChatApp.Persistence.Membership.ApplicationUser", b =>
@@ -145,7 +145,7 @@ namespace ChatApp.Web.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Povience")
+                    b.Property<string>("Provience")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -176,7 +176,7 @@ namespace ChatApp.Web.Data.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("ChatApp.Persistence.Membership.ApplicationUserClaim", b =>
@@ -200,7 +200,7 @@ namespace ChatApp.Web.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims", (string)null);
+                    b.ToTable("UserClaims", (string)null);
                 });
 
             modelBuilder.Entity("ChatApp.Persistence.Membership.ApplicationUserLogin", b =>
@@ -221,7 +221,7 @@ namespace ChatApp.Web.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins", (string)null);
+                    b.ToTable("UserLogins", (string)null);
                 });
 
             modelBuilder.Entity("ChatApp.Persistence.Membership.ApplicationUserRole", b =>
@@ -236,7 +236,7 @@ namespace ChatApp.Web.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles", (string)null);
+                    b.ToTable("UserRoles", (string)null);
                 });
 
             modelBuilder.Entity("ChatApp.Persistence.Membership.ApplicationUserToken", b =>
@@ -255,7 +255,7 @@ namespace ChatApp.Web.Data.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens", (string)null);
+                    b.ToTable("UserTokens", (string)null);
                 });
 
             modelBuilder.Entity("ChatApp.Persistence.Membership.ApplicationRoleClaim", b =>
