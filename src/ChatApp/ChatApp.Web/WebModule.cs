@@ -9,5 +9,8 @@ public class WebModule : Module
 
         builder.RegisterType<RegisterModel>().AsSelf();
         builder.RegisterType<RegistrationMessageModel>().AsSelf();
+        builder.RegisterType<ForgotPasswordModel>().AsSelf();
+        builder.RegisterType<ResetPasswordModel>().AsSelf();
+        builder.RegisterType<LoginModel>().AsSelf();
     }
 }

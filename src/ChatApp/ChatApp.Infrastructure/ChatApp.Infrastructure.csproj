@@ -22,6 +22,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Feature\Services\Email\Template\ForgotPasswordEmail.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ForgotPasswordEmail.tt</DependentUpon>
+    </Compile>
     <Compile Update="Feature\Services\Email\Template\RegistrationConfirmEmail.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -30,6 +35,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Feature\Services\Email\Template\ForgotPasswordEmail.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ForgotPasswordEmail.cs</LastGenOutput>
+    </None>
     <None Update="Feature\Services\Email\Template\RegistrationConfirmEmail.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>RegistrationConfirmEmail.cs</LastGenOutput>

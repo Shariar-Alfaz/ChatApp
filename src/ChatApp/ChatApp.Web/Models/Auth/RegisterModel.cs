@@ -28,7 +28,7 @@ namespace ChatApp.Web.Models.Auth
         [Required]
         public string Street { get; set; }
         [Required]
-        [RegularExpression("[a-zA-z]+", ErrorMessage = "Provience name is not valid")]
-        public string Provience { get; set; }
+        [RegularExpression("[a-zA-z]+", ErrorMessage = "Province name is not valid")]
+        public string Province { get; set; }
     }
 }

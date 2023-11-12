@@ -18,9 +18,9 @@ namespace ChatApp.Infrastructure.Feature.Services.Email.Template
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "E:\projects\ChatApp\src\ChatApp\ChatApp.Infrastructure\Feature\Services\Email\Template\RegistrationConfirmEmail.tt"
+    #line 1 "E:\projects\ChatApp\src\ChatApp\ChatApp.Infrastructure\Feature\Services\Email\Template\ForgotPasswordEmail.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public partial class RegistrationConfirmEmail : RegistrationConfirmEmailBase
+    public partial class ForgotPasswordEmail : ForgotPasswordEmailBase
     {
 #line hidden
         /// <summary>
@@ -30,20 +30,20 @@ namespace ChatApp.Infrastructure.Feature.Services.Email.Template
         {
             this.Write("<html>\r\n\t<body>\r\n\t\t<h2>Chat App</h2>\r\n\t\t<h4>Dear, ");
             
-            #line 9 "E:\projects\ChatApp\src\ChatApp\ChatApp.Infrastructure\Feature\Services\Email\Template\RegistrationConfirmEmail.tt"
+            #line 9 "E:\projects\ChatApp\src\ChatApp\ChatApp.Infrastructure\Feature\Services\Email\Template\ForgotPasswordEmail.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Name));
             
             #line default
             #line hidden
-            this.Write("</h4>\r\n\t\t<p>Thank you for registering with us. Please click on the below link to " +
-                    "activate your account.</p>\r\n\t\t<a href=\"");
+            this.Write("</h4>\r\n\t\t<p>For reset your password pleace click the attached link.</p>\r\n\t\t<a hre" +
+                    "f=\"");
             
-            #line 11 "E:\projects\ChatApp\src\ChatApp\ChatApp.Infrastructure\Feature\Services\Email\Template\RegistrationConfirmEmail.tt"
+            #line 11 "E:\projects\ChatApp\src\ChatApp\ChatApp.Infrastructure\Feature\Services\Email\Template\ForgotPasswordEmail.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Url));
             
             #line default
             #line hidden
-            this.Write("\">Confirm registration</a>\r\n\t</body>\r\n</html>");
+            this.Write("\">Reset Password</a>\r\n\t</body>\r\n</html>");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -55,7 +55,7 @@ namespace ChatApp.Infrastructure.Feature.Services.Email.Template
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
-    public class RegistrationConfirmEmailBase
+    public class ForgotPasswordEmailBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

@@ -37,8 +37,34 @@ namespace ChatApp.Web.Controllers
 
         public IActionResult Login()
         {
-           
-            return View();
+           var model = _scope.Resolve<LoginModel>();
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError("Email", "Email or password is not valid.");
+                return View(model);
+            }
+            var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("index", "home");
+            }
+            else
+            {
+                ModelState.AddModelError("Email", "Email or password is not valid.");
+            }
+            return View(model);
         }
 
         public IActionResult Register()
@@ -66,11 +92,16 @@ namespace ChatApp.Web.Controllers
                     LastName = model.LastName,
                     Street = model.Street,
                     Country = model.Country,
-                    Provience = model.Provience,
+                    Province = model.Province,
                     PhoneNumber = model.ContactNumber,
                     RegistrationDate = DateTime.Now
                 };
-
+                var isEmailExist = await _userManager.FindByEmailAsync(model.Email);
+                if (isEmailExist != null)
+                {
+                    ModelState.AddModelError("Email", "Email already exist");
+                    return View(model);
+                }
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -149,7 +180,97 @@ namespace ChatApp.Web.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Login");
+            return RedirectToAction("login");
+        }
+
+        public IActionResult ForgotPassword()
+        {
+            var model = _scope.Resolve<ForgotPasswordModel>();
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError("Email", "Account does not exist");
+                return View(model);
+            }
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
+            var callbackUrl = Url.Action("resetpassword", "auth", new { userId = user.Id, token = token }, Request.Scheme);
+            await _emailMessageService.SendForgotPasswordEmailAsync(
+                               user.Email, $"{user.FirstName} {user.LastName}", callbackUrl!);
+            return RedirectToAction("forgotPasswordMessage", "auth",
+                               new { userName = $"{user.FirstName} {user.LastName}", email = user.Email });
+        }
+
+        public IActionResult ForgotPasswordMessage(string userName, string email)
+        {
+            var model = _scope.Resolve<RegistrationMessageModel>();
+            model.Name = userName;
+            model.Email = email;
+            return View(model);
+        }
+
+        public async Task<IActionResult> ResetPassword(Guid userId, string token)
+        {
+            if (userId == Guid.Empty || string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("index", "home");
+            }
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+            if (user == null)
+            {
+                return RedirectToAction("index", "home");
+            }
+            token = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(token));
+            var model = _scope.Resolve<ResetPasswordModel>();
+            model.UserId = userId;
+            model.Token = token;
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(ResetPasswordModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await _userManager.FindByIdAsync(model.UserId.ToString());
+            if (user == null)
+            {
+                return RedirectToAction("index", "home");
+            }
+            var token = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(model.Token));
+            var result = await _userManager.ResetPasswordAsync(user, token, model.Password);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("resetpasswordsuccess");
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("Password", error.Description);
+                }
+            }
+            return View(model);
+        }
+
+        public IActionResult ResetPasswordSuccess()
+        {
+            return View();
         }
     }
 }

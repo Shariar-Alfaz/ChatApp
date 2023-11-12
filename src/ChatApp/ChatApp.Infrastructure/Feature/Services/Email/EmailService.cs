@@ -23,6 +23,14 @@ namespace ChatApp.Infrastructure.Feature.Services.Email
             await SendEmailAsync(receiverEmail, subject, message);
         }
 
+        public async Task SendForgotPasswordEmailAsync(string receiverEmail, string reciverName, string url)
+        {
+            const string subject = "Forgot Password";
+            var template = new ForgotPasswordEmail(reciverName, url);
+            var message = template.TransformText();
+            await SendEmailAsync(receiverEmail, subject, message);
+        }
+
         private async Task SendEmailAsync(string receiverEmail, string subject, string message)
         {
             var email = new MimeMessage();
