@@ -7,8 +7,8 @@ using Serilog.Events;
 using System.Reflection;
 using Autofac;
 using ChatApp.Persistence;
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using ChatApp.Infrastructure.Feature.Services.Email.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((ctx, lc) => lc
@@ -53,6 +53,8 @@ try
            options.SlidingExpiration = true;
            options.ExpireTimeSpan = TimeSpan.FromDays(7);
        });
+
+    builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailServiceSettings"));
 
     var app = builder.Build();
 
