@@ -97,7 +97,7 @@ namespace ChatApp.Web.Controllers
                     var callbackUrl = Url.Action("ConfirmEmail", "Auth", new { userId = user.Id, token = emailConfirmToken }, Request.Scheme);
                     await _emailMessageService.SendRegistrationConfirmationEmailAsync(
                         user.Email, $"{user.FirstName} {user.LastName}", callbackUrl!);
-                    return RedirectToAction("ConfirmEmailMessage", "Auth",
+                    return RedirectToAction("confirmEmailMessage", "auth",
                         new { userName = $"{user.FirstName} {user.LastName}", email = user.Email });
                 }
             }
@@ -113,20 +113,20 @@ namespace ChatApp.Web.Controllers
         {
             if (userId == Guid.Empty || string.IsNullOrEmpty(token))
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("index", "home");
             }
             var user = await _userManager.FindByIdAsync(userId.ToString());
             if (user == null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("index", "home");
             }
             token = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(token));
             var result = await _userManager.ConfirmEmailAsync(user, token);
             if (result.Succeeded)
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("success","auth",new {userId = user.Id});
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("index", "home");
         }
 
         public IActionResult ConfirmEmailMessage(string userName, string email)
@@ -136,6 +136,15 @@ namespace ChatApp.Web.Controllers
             model.Email = email;
             return View(model);
         }
+
+        public IActionResult Success(Guid userId)
+        {
+            var user = _userManager.FindByIdAsync(userId.ToString()).Result;
+            var model = _scope.Resolve<RegistrationMessageModel>();
+            model.Name = $"{user!.FirstName} {user.LastName}";
+            model.Email = user.Email!;
+            return View(model);
+        }   
 
         public async Task<IActionResult> Logout()
         {
