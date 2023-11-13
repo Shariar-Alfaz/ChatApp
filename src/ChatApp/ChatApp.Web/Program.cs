@@ -82,6 +82,11 @@ try
     app.MapControllerRoute(
         name: "default",
         pattern: "{controller=home}/{action=index}/{id?}");
+    
+    app.MapControllerRoute(
+        name: "areas",
+        pattern: "{area:exists}/{controller=home}/{action=index}/{id?}"
+    );
 
     app.MapRazorPages();
 

@@ -58,7 +58,7 @@ namespace ChatApp.Web.Controllers
             var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
             if (result.Succeeded)
             {
-                return RedirectToAction("index", "home");
+                return LocalRedirect("/user");
             }
             else
             {
@@ -180,7 +180,7 @@ namespace ChatApp.Web.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("login");
+            return RedirectToAction("login","auth");
         }
 
         public IActionResult ForgotPassword()
@@ -256,7 +256,7 @@ namespace ChatApp.Web.Controllers
             var result = await _userManager.ResetPasswordAsync(user, token, model.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("resetpasswordsuccess");
+                return RedirectToAction("resetpasswordsuccess","auth");
             }
             else
             {
