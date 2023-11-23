@@ -11,5 +11,10 @@ namespace ChatApp.Web.Areas.User.Controllers
         {
             return View();
         }
+
+        public IActionResult Chat()
+        {
+            return View();
+        }
     }
 }

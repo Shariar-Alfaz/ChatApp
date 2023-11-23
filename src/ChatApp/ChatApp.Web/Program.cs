@@ -10,6 +10,7 @@ using ChatApp.Persistence;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using ChatApp.Infrastructure.Feature.Services.Email.Settings;
 using ChatApp.Infrastructure;
+using ChatApp.Web.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((ctx, lc) => lc
@@ -57,6 +58,7 @@ try
        });
 
     builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailServiceSettings"));
+    builder.Services.AddSignalR();
 
     var app = builder.Build();
 
@@ -87,7 +89,8 @@ try
         name: "areas",
         pattern: "{area:exists}/{controller=home}/{action=index}/{id?}"
     );
-
+    
+    app.MapHub<ChatHub>("/hubs/chatHub");
     app.MapRazorPages();
 
     app.Run();
